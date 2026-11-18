@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Gear | Fynn's Fotography</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- top bar -->
+  <header id="header">
+    <button id="open-menu" class="menu-button">
+      <span class="menu-icon"></span>
+      Menu
+    </button>
+    <a href="index.html" class="logo">Fynn's Fotography</a>
+  </header>
+
+  <!-- dark background behind the menu -->
+  <div id="overlay"></div>
+
+  <!-- sliding menu -->
+  <nav id="menu">
+    <button id="close-menu" class="close-button">
+      <span class="close-icon"></span>
+      Close
+    </button>
+
+    <ul>
+      <li><a href="index.html">Home<span class="arrow"></span></a></li>
+      <li><a href="about.html">About Me<span class="arrow"></span></a></li>
+      <li><a href="gear.html">My Gear<span class="arrow"></span></a></li>
+      <li class="has-sub">
+        <a href="#" id="gallery-link">Gallery<span class="arrow"></span></a>
+
+        <!-- second panel that slides out to the right -->
+        <div class="sub">
+          <ul>
+            <li><a href="sport.html">Sport Photography<span class="arrow"></span></a></li>
+            <li><a href="product.html">Product and Portrait Photography<span class="arrow"></span></a></li>
+            <li><a href="nature.html">Nature Photography<span class="arrow"></span></a></li>
+            <li><a href="vehicle.html">Vehicle Photography<span class="arrow"></span></a></li>
+            <li><a href="other.html">Other Photography<span class="arrow"></span></a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- cover picture -->
+  <section class="cover cover-mygear">
+    <h1>My Gear</h1>
+    <a href="#content" class="scroll-arrow"></a>
+  </section>
+
+  <!-- 5 square images in a row, each with a small text box -->
+  <section id="content" class="page-section">
+    <div class="gear-row">
+      <div class="gear-item">
+        <img src="images/eos.jpg" alt="Gear 1">
+        <p>This is my Canon EOS R7 body that I use for most of my photography.</p>
+      </div>
+      <div class="gear-item">
+        <img src="images/400mm.jpg" alt="Gear 2">
+        <p>This is my Canon 100-400mm lens that I use for far away shots. It fits on the EOS R7 body.</p>
+      </div>
+      <div class="gear-item">
+        <img src="images/tamron.jpg" alt="Gear 3">
+        <p>24-70mm Tamron lens. It fits on the EOS R7 body.</p>
+      </div>
+      <div class="gear-item">
+        <img src="images/sonybody.jpg" alt="Gear 4">
+        <p>Sony a6400 camera I use for videography. I also have a DJI gimble to mount it on for videography.</p>
+      </div>
+      <div class="gear-item">
+        <img src="images/sonylens.jpg" alt="Gear 5">
+        <p>18-105mm lens for sony.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+
+      <div class="footer-column">
+        <h3>Pages</h3>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="gear.html">My Gear</a>
+        <a href="references.html">References</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Gallery</h3>
+        <a href="sport.html">Sport Photography</a>
+        <a href="product.html">Product and Portrait Photography</a>
+        <a href="nature.html">Nature Photography</a>
+        <a href="vehicle.html">Vehicle Photography</a>
+        <a href="other.html">Other Photography</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Follow/contact</h3>
+        <a href="https://www.instagram.com/fynnsfotography/?hl=en" target="_blank" rel="noopener" class="insta-link">
+          <img src="images/insta.png" alt="" class="insta-logo">
+          Instagram
+        </a>
+      </div>
+
+    </div>
+
+    <p class="copyright">&copy; 2026 Fynn's Fotography</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

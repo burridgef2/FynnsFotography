@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vehicle Photography | Fynn's Fotography</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- top bar -->
+  <header id="header">
+    <button id="open-menu" class="menu-button">
+      <span class="menu-icon"></span>
+      Menu
+    </button>
+    <a href="index.html" class="logo">Fynn's Fotography</a>
+  </header>
+
+  <!-- dark background behind the menu -->
+  <div id="overlay"></div>
+
+  <!-- sliding menu -->
+  <nav id="menu">
+    <button id="close-menu" class="close-button">
+      <span class="close-icon"></span>
+      Close
+    </button>
+
+    <ul>
+      <li><a href="index.html">Home<span class="arrow"></span></a></li>
+      <li><a href="about.html">About Me<span class="arrow"></span></a></li>
+      <li><a href="gear.html">My Gear<span class="arrow"></span></a></li>
+      <li class="has-sub">
+        <a href="#" id="gallery-link">Gallery<span class="arrow"></span></a>
+
+        <!-- second panel that slides out to the right -->
+        <div class="sub">
+          <ul>
+            <li><a href="sport.html">Sport Photography<span class="arrow"></span></a></li>
+            <li><a href="product.html">Product and Portrait Photography<span class="arrow"></span></a></li>
+            <li><a href="nature.html">Nature Photography<span class="arrow"></span></a></li>
+            <li><a href="vehicle.html">Vehicle Photography<span class="arrow"></span></a></li>
+            <li><a href="other.html">Other Photography<span class="arrow"></span></a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- cover picture -->
+  <section class="cover cover-vehicle">
+    <h1>Vehicle Photography</h1>
+    <a href="#content" class="scroll-arrow"></a>
+  </section>
+
+  <!-- 6 photos in a grid -->
+  <section id="content" class="page-section">
+    <div class="photo-grid">
+      <img src="images/vehicle1.jpg" alt="Vehicle Photography 1">
+      <img src="images/vehicle2.jpg" alt="Vehicle Photography 2">
+      <img src="images/vehicle3.jpg" alt="Vehicle Photography 3">
+      <img src="images/vehicle4.jpg" alt="Vehicle Photography 4">
+      <img src="images/vehicle5.jpg" alt="Vehicle Photography 5">
+      <img src="images/vehicle6.jpg" alt="Vehicle Photography 6">
+      <img src="images/vehicle7.jpg" alt="Vehicle Photography 7">
+      <img src="images/vehicle8.jpg" alt="Vehicle Photography 8">
+      <img src="images/vehicle9.jpg" alt="Vehicle Photography 9">
+      <img src="images/vehicle10.jpg" alt="Vehicle Photography 10">
+      <img src="images/vehicle11.jpg" alt="Vehicle Photography 11">
+      <img src="images/vehicle12.jpg" alt="Vehicle Photography 12">
+    </div>
+
+    <h2 class="more-heading">
+      <a href="https://www.instagram.com/fynnsfotography/?hl=en" target="_blank" rel="noopener">See my Instagram for more</a>
+    </h2>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+
+      <div class="footer-column">
+        <h3>Pages</h3>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="gear.html">My Gear</a>
+        <a href="references.html">References</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Gallery</h3>
+        <a href="sport.html">Sport Photography</a>
+        <a href="product.html">Product and Portrait Photography</a>
+        <a href="nature.html">Nature Photography</a>
+        <a href="vehicle.html">Vehicle Photography</a>
+        <a href="other.html">Other Photography</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Follow/contact</h3>
+        <a href="https://www.instagram.com/fynnsfotography/?hl=en" target="_blank" rel="noopener" class="insta-link">
+          <img src="images/insta.png" alt="" class="insta-logo">
+          Instagram
+        </a>
+      </div>
+
+    </div>
+
+    <p class="copyright">&copy; 2026 Fynn's Fotography</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

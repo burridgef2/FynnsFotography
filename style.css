@@ -1,0 +1,597 @@
+/* ---------- basics ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ---------- header ---------- */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  z-index: 20;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.menu-icon {
+  display: block;
+  width: 22px;
+  height: 9px;
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  width: 200px;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+
+/* ---------- sliding menu ---------- */
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  z-index: 30;
+}
+
+#overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: -460px;           /* hidden off the side of the screen */
+  width: 440px;
+  max-width: 85%;
+  height: 100%;
+  padding: 28px 48px;
+  background-color: #ffffff;
+  color: #111111;
+  z-index: 40;
+  transition: left 0.5s ease;
+}
+
+nav.open {
+  left: 0;                /* slides in */
+}
+
+/* menu always keeps its own colours, whatever the page theme is */
+nav,
+nav a,
+nav button {
+  color: #111111;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #111111;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* the X is made from two lines */
+.close-icon {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.close-icon::before,
+.close-icon::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 22px;
+  border-top: 1px solid #111111;
+}
+
+.close-icon::before {
+  transform: rotate(45deg);
+}
+
+.close-icon::after {
+  transform: rotate(-45deg);
+}
+
+/* rows stretch to the edge of the menu so hover carries over to the sub panel */
+nav > ul {
+  list-style: none;
+  margin: 150px -48px 0;
+}
+
+nav > ul > li {
+  padding: 0 48px;
+}
+
+nav li {
+  margin-bottom: 34px;
+}
+
+nav li a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 6px;
+  font-family: Georgia, serif;
+  font-size: 30px;
+}
+
+/* the underline, starts at 0 width */
+nav li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: #111111;
+  transition: width 0.35s;
+}
+
+nav li a:hover::after {
+  width: 100%;
+}
+
+/* the little > arrow, hidden until hover */
+.arrow {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-top: 1px solid #111111;
+  border-right: 1px solid #111111;
+  transform: rotate(45deg);
+  opacity: 0;
+  margin-left: -10px;
+  transition: opacity 0.3s, margin-left 0.3s;
+}
+
+nav li a:hover .arrow {
+  opacity: 1;
+  margin-left: 0;
+}
+
+
+/* ---------- gallery sub panel ---------- */
+
+.sub {
+  position: absolute;
+  top: 0;
+  left: 100%;             /* sits right next to the menu */
+  width: 400px;
+  max-width: 80vw;
+  height: 100%;
+  padding: 28px 48px;
+  background-color: #ffffff;
+  border-left: 1px solid #e6e6e6;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-30px);
+  transition: opacity 0.3s, transform 0.4s ease, visibility 0.3s;
+}
+
+.sub ul {
+  list-style: none;
+  margin-top: 150px;
+}
+
+.sub li {
+  margin-bottom: 26px;
+}
+
+.sub li a {
+  font-size: 22px;
+}
+
+/* the javascript adds .open when Gallery is hovered or clicked, and it stays until closed */
+.has-sub.open > .sub {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* safety: when the main menu is closed the sub panel is always hidden */
+nav:not(.open) .has-sub .sub {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-30px);
+}
+
+/* keep Gallery underlined with its arrow while the panel is open */
+.has-sub.open > a::after {
+  width: 100%;
+}
+
+.has-sub.open > a .arrow {
+  opacity: 1;
+  margin-left: 0;
+}
+
+
+/* ---------- cover ---------- */
+
+.cover {
+  position: relative;
+  height: 100vh;
+  min-height: 520px;
+  background-color: #222222;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* a different cover picture for each page: the page's own class picks one */
+.cover-index   { background-image: url("images/coverindex.jpg"); }
+.cover-about   { background-image: url("images/coverabout.jpg"); }
+.cover-mygear  { background-image: url("images/covergear.jpg"); }
+.cover-sports  { background-image: url("images/coversport.jpg"); }
+.cover-product { background-image: url("images/coverproduct.jpg"); }
+.cover-nature  { background-image: url("images/covernature.jpg"); }
+.cover-vehicle { background-image: url("images/covervehicle.jpg"); }
+.cover-other   { background-image: url("images/coverother.jpg"); }
+.cover-references { background-image: url("images/coverreferences.jpg"); }
+
+/* slightly darkens the picture so the title is easier to read */
+.cover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.cover h1 {
+  position: relative;
+  padding: 0 24px;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 80px;
+  letter-spacing: 2px;
+}
+
+/* down arrow at the bottom */
+.scroll-arrow {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  transform: rotate(45deg);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%   { bottom: 36px; }
+  50%  { bottom: 26px; }
+  100% { bottom: 36px; }
+}
+
+
+/* ---------- intro section ---------- */
+
+.intro {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 120px 24px;
+  text-align: center;
+}
+
+.intro h2 {
+  margin-bottom: 28px;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 40px;
+}
+
+.intro p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #a8a8a8;
+}
+
+
+/* ---------- inner pages ---------- */
+
+.page-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 32px;
+}
+
+/* gallery pages: 6 photos, 3 across */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.photo-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.more-heading {
+  margin-top: 64px;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 28px;
+}
+
+.more-heading a {
+  padding-bottom: 6px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.more-heading a:hover {
+  border-bottom-color: #ffffff;
+}
+
+/* text boxes (about me, references) */
+.text-box {
+  padding: 48px;
+  border: 1px solid #2a2a2a;
+  line-height: 1.8;
+  color: #a8a8a8;
+}
+
+.text-box h2 {
+  margin-bottom: 24px;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.text-box p {
+  margin-bottom: 20px;
+}
+
+/* references: one big box that takes most of the screen */
+.reference-box {
+  min-height: 80vh;
+}
+
+/* about me: portrait on the left, text on the right */
+.about-layout {
+  display: flex;
+  align-items: stretch;
+  gap: 48px;
+}
+
+.about-image {
+  display: block;
+  width: 40%;
+  object-fit: cover;
+}
+
+.about-layout .text-box {
+  flex: 1;
+}
+
+/* my gear: 5 square pictures in a row */
+.gear-row {
+  display: flex;
+  gap: 20px;
+}
+
+.gear-item {
+  flex: 1;
+  min-width: 0;
+}
+
+.gear-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.gear-item p {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #2a2a2a;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #a8a8a8;
+}
+
+
+/* ---------- footer ---------- */
+
+footer {
+  padding: 64px 32px 32px;
+  border-top: 1px solid #2a2a2a;
+  color: #a8a8a8;
+}
+
+.footer-links {
+  max-width: 900px;
+  margin: 0 auto 56px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-column h3 {
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.footer-column a {
+  display: block;
+  width: fit-content;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #a8a8a8;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.footer-column a:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+/* instagram link with its small logo */
+.insta-link {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+}
+
+.insta-logo {
+  display: block;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 700px) {
+  .cover h1 {
+    font-size: 42px;
+  }
+
+  header {
+    padding: 0 20px;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .sub {
+    left: 0;
+    width: 100%;
+    max-width: none;
+    border-left: none;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gear-row {
+    flex-wrap: wrap;
+  }
+
+  .gear-item {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 600px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-layout {
+    flex-direction: column;
+  }
+
+  .about-image {
+    width: 100%;
+  }
+
+  .text-box {
+    padding: 28px;
+  }
+}
